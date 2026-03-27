@@ -3,10 +3,10 @@ autoinstall:
   version: 1
 
   identity:
-    realname: "Pantera"
-    hostname: ubuntu-pro
-    username: pantera
-    password: "$6$EXEMPLO_HASH_AQUI"
+    realname: "Leonardo"
+    hostname: SatoruJyrai
+    username: Leonardo
+    password: "$y$j9T$adC3VfpIgWNMabaoZ.tKm1$QA5t.xktPbJpJ2JyTrU919KX5qvT.piQu9YdxpD7967"
 
   locale: pt_BR.UTF-8
 
