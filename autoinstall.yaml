@@ -1,0 +1,52 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  identity:
+    realname: "Pantera"
+    hostname: ubuntu-full
+    username: pantera
+    password: "$6$EXEMPLO_HASH_AQUI"
+
+  locale: pt_BR.UTF-8
+
+  keyboard:
+    layout: br
+    variant: ""
+
+  timezone: America/Sao_Paulo
+
+  ssh:
+    install-server: true
+    allow-pw: true
+
+  packages:
+    - curl
+    - wget
+    - git
+    - nano
+    - vim
+    - htop
+    - unzip
+    - zip
+    - net-tools
+    - software-properties-common
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
+    - lsb-release
+
+  storage:
+    layout:
+      name: lvm
+
+  updates: security
+  shutdown: reboot
+
+  late-commands:
+    - curtin in-target --target=/target -- bash -c 'mkdir -p /home/pantera/setup'
+    - curtin in-target --target=/target -- bash -c 'wget -O /home/pantera/setup/dev_full_ubuntu24.sh https://raw.githubusercontent.com/TI-WATCH/Teste_Watch/main/dev_full_ubuntu24.sh'
+    - curtin in-target --target=/target -- bash -c 'chmod +x /home/pantera/setup/dev_full_ubuntu24.sh'
+    - curtin in-target --target=/target -- bash -c 'chown -R pantera:pantera /home/pantera/setup'
+    - curtin in-target --target=/target -- bash -c 'bash /home/pantera/setup/dev_full_ubuntu24.sh > /home/pantera/setup/dev_full_ubuntu24.log 2>&1'
+    - curtin in-target --target=/target -- bash -c 'chown pantera:pantera /home/pantera/setup/dev_full_ubuntu24.log'
